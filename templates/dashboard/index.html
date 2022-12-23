@@ -1,0 +1,33 @@
+{% extends 'partials/_base.html' %}
+<!--load static-->
+{% load static %}
+
+<!---Title-->
+{% block title %}Homepage{% endblock title %}
+<!---EndTitle-->
+
+<!--Content-->
+{% block content %}
+
+<!--Chart-->
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="bg-white">
+        <canvas id="myChart" class="mychart"></canvas>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-white" class="mychart">
+        <canvas id="myChart1" class="mychart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--EndChart-->
+
+<script src="{% static 'js/chart.js' %}"></script>
+{% endblock %}
+<!--EndContent-->

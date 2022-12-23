@@ -1,0 +1,91 @@
+{% extends 'partials/_base.html' %}
+
+<!---Title-->
+{% block title %}Order Page{% endblock %}
+<!---EndTitle-->
+
+{% block content %}
+<!---Table-->
+
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-4">
+      <!--- <div class="border p-3 bg-white">
+              <h5 class="text-dark">Add Product</h5>
+              <hr />
+  
+              <form action="">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Coca Cola"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="quantity" class="form-label">Quantity</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="quantity"
+                    name="quantity"
+                    placeholder="4"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="category" class="form-label">Category</label>
+  
+                  <select name="category" id="category" class="form-control">
+                    <option selected>Select...</option>
+                    <option>Food</option>
+                    <option>Drinks</option>
+                  </select>
+                </div>
+  
+                <input
+                  type="submit"
+                  value="Add Product"
+                  class="btn btn-success btn-block form-control"
+                />
+              </form>
+            </div> -->
+    </div>
+    <div class="col-md-8">
+      <table class="table table-striped bg-white 5">
+        <thead class="bg-success text-white">
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Category</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Ordered By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row">Coca Cola</td>
+            <td>Drinks</td>
+            <td>10</td>
+            <td>Nero</td>
+          </tr>
+          <tr>
+            <td scope="row">Malt</td>
+            <td>Drinks</td>
+            <td>10</td>
+            <td>Nero</td>
+          </tr>
+          <tr>
+            <td scope="row">Rice Bag</td>
+            <td>Food</td>
+            <td>15</td>
+            <td>Nero</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!---End Table-->
+{% endblock content %}

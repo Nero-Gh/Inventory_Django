@@ -1,0 +1,16 @@
+body {
+  background: rgb(236, 227, 227);
+}
+
+.my-card {
+  transition: 200ms ease-in-out;
+  border: none;
+}
+.my-card:hover {
+  transform: scale(1.1);
+}
+
+.my-chart {
+  width: 300px;
+  height: 300px;
+}
