@@ -9,6 +9,10 @@
 <!--Content-->
 {% block content %}
 
+<!---Topbar-->
+{% include 'partials/_topbar.html' %}
+<!---End Topbar-->
+
 <!--Chart-->
 
 <div class="container mt-4">
@@ -25,7 +29,6 @@
     </div>
   </div>
 </div>
-
 <!--EndChart-->
 
 <script src="{% static 'js/chart.js' %}"></script>
