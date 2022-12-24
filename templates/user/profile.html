@@ -1,0 +1,67 @@
+{% extends 'partials/_base.html' %}
+
+<!---Title-->
+{% block title %}Profile{% endblock title %}
+<!--EndTitle-->
+{% load crispy_forms_tags %}
+
+<!---Content-->
+
+{% block content %}
+
+<!---TopSide bar-->
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-success text-white">
+          <h6>Profile Page</h6>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="d-flex justify-content-between">
+                <span class="h4">Staff Profile Details</span>
+                <a href="#" class="btn btn-dark btn-sm text-white">Edit</a>
+              </div>
+              <hr />
+
+              <table class="table table-borderless bg-white 5">
+                <tbody>
+                  <tr>
+                    <th scope="row">Name</th>
+                    <td class="text-capitalize">{{user.username}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Email</th>
+                    <td class="text-capitalize">{{user.email}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Phone</th>
+                    <td>{{user.profile.phone}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Address</th>
+                    <td>{{user.profile.address}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-4">
+              <img
+                src="{{user.profile.image.url}}"
+                alt=""
+                class="img-thumbnail border border-0"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!---End TopSidebar-->
+
+{% endblock content %}
