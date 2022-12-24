@@ -9,6 +9,8 @@
 <!--Content-->
 {% block content %}
 
+<!---User Permission-->
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
 <!---Topbar-->
 {% include 'partials/_topbar.html' %}
 <!---End Topbar-->
@@ -31,6 +33,16 @@
 </div>
 <!--EndChart-->
 
+{% else %}
+<!--Table-->
+
+<!--Staff Dashboard-->
+{% include './staff_index.html' %}
+<!--End Staff Dashboard-->
+
+{% endif %}
+
 <script src="{% static 'js/chart.js' %}"></script>
+<!---User Permission Ends-->
 {% endblock %}
 <!--EndContent-->
