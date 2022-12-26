@@ -1,0 +1,50 @@
+{% extends 'partials/_base.html' %}
+
+<!---Title-->
+{% block title %}Profile{% endblock title %}
+<!--EndTitle-->
+{% load crispy_forms_tags %}
+
+<!---Content-->
+
+{% block content %}
+
+<!---TopSide bar-->
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-success text-white">
+          <h6>Profile Page</h6>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="d-flex justify-content-between">
+                <span class="h4">Staff Profile Details</span>
+              </div>
+              <hr />
+              <form method="post">
+                {% csrf_token %}
+                <!---->
+                {{user_form | crispy }}
+                <!---->
+                {{profile_form | crispy}}
+                <input
+                  type="submit"
+                  class="btn btn-success"
+                  value="Edit Profile"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!---End TopSidebar-->
+
+{% endblock content %}
