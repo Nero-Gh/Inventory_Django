@@ -11,6 +11,7 @@ from django.contrib import messages
 def index(request):
 
     orders = Order.objects.all()    
+    products = Product.objects.all()
 
     if request.method  =='POST':
         myform = OrderForm(request.POST)
@@ -24,6 +25,7 @@ def index(request):
     context = {
         'orders':orders,
         'myform':myform,
+        'product':products
     }
     return render(request,'dashboard/index.html',context)
 
