@@ -20,42 +20,26 @@
         <thead class="bg-success text-white">
           <tr>
             <th scope="col"></th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone No.</th>
           </tr>
         </thead>
         <tbody>
+          {% for worker in workers %}
           <tr>
             <th scope="row">
-              <a href="#" class="text-decoration-none btn btn-secondary btn-sm"
+              <a
+                href="{% url 'dashboard-staff-detail' worker.id %}"
+                class="text-decoration-none btn btn-secondary btn-sm"
                 >View</a
               >
             </th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td class="text-capitalize">{{worker.username}}</td>
+            <td class="text-capitalize">{{worker.email}}</td>
+            <td>{{worker.profile.phone}}</td>
           </tr>
-          <tr>
-            <th scope="row">
-              <a href="#" class="text-decoration-none btn btn-secondary btn-sm"
-                >View</a
-              >
-            </th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <a href="#" class="text-decoration-none btn btn-secondary btn-sm"
-                >View</a
-              >
-            </th>
-            <td>Larry the Bird</td>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </div>
