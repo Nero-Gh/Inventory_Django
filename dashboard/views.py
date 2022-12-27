@@ -1,14 +1,43 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import Product,Order
-from .forms import ProductForm
+from .forms import ProductForm,OrderForm
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 # Create your views here.
 @login_required
 def index(request):
-    return render(request,'dashboard/index.html')
+
+    orders = Order.objects.all()    
+
+    if request.method  =='POST':
+        myform = OrderForm(request.POST)
+        if myform.is_valid():
+            instance = myform.save(commit=False)
+            instance.staff = request.user
+            instance.save()
+            return redirect('dashboard-index')
+    else:
+        myform = OrderForm()
+    context = {
+        'orders':orders,
+        'myform':myform,
+    }
+    return render(request,'dashboard/index.html',context)
+
+@login_required
+def items_count(request):
+    products = Product.objects.count() 
+    orders = Order.objects.count()
+    context = {
+    'products':products,
+    'orders':orders
+    } 
+    return render(request,'partials/_topbar.html',context)
+
+
 
 @login_required
 def staff(request):
@@ -38,6 +67,8 @@ def products(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
+            product_name = form.cleaned_data.get('name')
+            messages.success(request,f'{product_name} has been added')
             return redirect('dashboard-products')
     else:
         form = ProductForm()
@@ -78,8 +109,7 @@ def product_update(request,pk):
 @login_required
 def orders(request):
     orders = Order.objects.all()
-
     context={
-        'orders':orders
+        'orders':orders,
     }
     return render(request,'dashboard/orders.html',context)

@@ -1,7 +1,5 @@
-{% extends 'partials/_base.html' %}
-
 <!---Title-->
-{% block title %}Staff Detail Page{% endblock %}
+{% load crispy_forms_tags %}
 <!----->
 {% block content %}
 <div class="container">
@@ -11,8 +9,11 @@
         <div class="card-header">Make Request</div>
         <div class="card-body">
           <form method="POST">
+            {% csrf_token %}
+            <!----->
+            {{myform|crispy}}
             <input
-              class="btn btn-success btn-block"
+              class="btn btn-success btn-block form-control form-control-sm"
               type="submit"
               value="Make Request"
             />
@@ -33,26 +34,13 @@
               </tr>
             </thead>
             <tbody>
+              {% for order in orders %} {% if order.staff == user %}
               <tr>
-                <td>Book</td>
-                <td>Stationary</td>
-                <td>10</td>
+                <td>{{order.product.name}}</td>
+                <td>{{order.product.category}}</td>
+                <td>{{order.order_quantity}}</td>
               </tr>
-              <tr>
-                <td>Book</td>
-                <td>Stationary</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>Book</td>
-                <td>Stationary</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>Book</td>
-                <td>Stationary</td>
-                <td>10</td>
-              </tr>
+              {% endif %} {% endfor %}
             </tbody>
           </table>
         </div>
