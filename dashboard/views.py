@@ -12,6 +12,10 @@ def index(request):
 
     orders = Order.objects.all()    
     products = Product.objects.all()
+    items_count=Product.objects.all().count()
+    orders_count = Order.objects.all().count()
+    workers_count = User.objects.all().count()
+
 
     if request.method  =='POST':
         myform = OrderForm(request.POST)
@@ -25,28 +29,29 @@ def index(request):
     context = {
         'orders':orders,
         'myform':myform,
-        'product':products
+        'product':products,
+        'workers_count':workers_count,
+        'items_count':items_count,
+        'orders_count':orders_count
     }
     return render(request,'dashboard/index.html',context)
 
-@login_required
-def items_count(request):
-    products = Product.objects.count() 
-    orders = Order.objects.count()
-    context = {
-    'products':products,
-    'orders':orders
-    } 
-    return render(request,'partials/_topbar.html',context)
+
 
 
 
 @login_required
 def staff(request):
     workers = User.objects.all()
+    workers_count = User.objects.all().count()
+    items_count=Product.objects.all().count()
+    orders_count = Order.objects.all().count()
 
     context = {
-        'workers':workers
+        'workers':workers,
+        'workers_count':workers_count,
+        'items_count':items_count,
+        'orders_count':orders_count
     }
     return render(request,'dashboard/staff.html',context)
 
@@ -63,7 +68,11 @@ def staff_detail(request,pk):
 @login_required
 def products(request):
     items = Product.objects.all() 
+    items_count=Product.objects.all().count()
     # items = Product.objects.raw('SELECT * FROM dashboard_product') 
+
+    orders_count = Order.objects.all().count()
+    workers_count = User.objects.all().count()
 
     if request.method=='POST':
         form = ProductForm(request.POST)
@@ -77,7 +86,10 @@ def products(request):
         # return redirect('dashboard-products')
     context={
         'items':items,
+        'items_count':items_count,
         'form':form,
+        'workers_count':workers_count,
+        'orders_count':orders_count
     }
     return render(request,'dashboard/products.html',context)
 
@@ -111,7 +123,13 @@ def product_update(request,pk):
 @login_required
 def orders(request):
     orders = Order.objects.all()
+    orders_count = Order.objects.all().count()
+    items_count=Product.objects.all().count()
+    workers_count = User.objects.all().count()
     context={
         'orders':orders,
+        'orders_count':orders_count,
+        'items_count':items_count,
+        'workers_count':workers_count,
     }
     return render(request,'dashboard/orders.html',context)

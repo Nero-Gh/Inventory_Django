@@ -13,11 +13,5 @@ urlpatterns = [
 
     path('orders/', views.orders,name='dashboard-orders'),
 
-
-
-    path('dashboard/counts', views.items_count,name='dashboard-items-count'),
-
-
-
 ]
 
